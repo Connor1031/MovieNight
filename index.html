@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Night</title>
+    <link rel="icon" href="images/movie-icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <img src="images/movie-icon.svg" alt="" width="84" height="84">
+            <h1>Movie Night</h1>
+        </header>
+
+        <main>
+            <section class="panel" aria-labelledby="formHeading">
+                <h2 id="formHeading">Add a Movie</h2>
+                <form id="movieForm" novalidate>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="title">Movie title</label>
+                            <input type="text" id="title" placeholder="(e.g. Wall-E)" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="director">Director</label>
+                            <input type="text" id="director" placeholder="(e.g. Andrew Stanton)">
+                        </div>
+                        <div class="form-group">
+                            <label for="releaseYear">Release year</label>
+                            <input type="number" id="releaseYear" min="1" max="9999" step="1" placeholder="(e.g. 2008)">
+                        </div>
+                        <div class="form-group">
+                            <label for="genre">Genre</label>
+                            <input type="text" id="genre" placeholder="(e.g. Animation)">
+                        </div>
+                        <div class="form-group">
+                            <label for="watchStatus">Watch status</label>
+                            <select id="watchStatus">
+                                <option value="Want to Watch">Want to Watch</option>
+                                <option value="Watched">Watched</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="rating">Rating</label>
+                            <select id="rating">
+                                <option value="">Not watched</option>
+                                <option value="1">1 / 5</option>
+                                <option value="2">2 / 5</option>
+                                <option value="3">3 / 5</option>
+                                <option value="4">4 / 5</option>
+                                <option value="5">5 / 5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Thoughts</label>
+                        <textarea id="notes" rows="3" placeholder="(What you thought about the movie.)"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" id="saveButton">Save Movie</button>
+                        <button type="button" id="cancelButton" class="secondary" hidden>Cancel Edit</button>
+                    </div>
+                    <p id="formError" class="error" role="alert"></p>
+                </form>
+            </section>
+
+            <section class="panel" aria-labelledby="collectionHeading">
+                <div class="collection-heading">
+                    <div>
+                        <h2 id="collectionHeading">Your Movies</h2>
+                        <p id="movieCount" class="section-description">Loading your collection...</p>
+                    </div>
+                    <div class="collection-controls">
+                        <label for="movieFilter">Filter</label>
+                        <select id="movieFilter">
+                            <option value="default">Default (title A-Z)</option>
+                            <option value="director">Director (A-Z)</option>
+                            <option value="genre">Genre (A-Z)</option>
+                            <option value="release_year">Year (newest first)</option>
+                            <option value="rating">Ratings (highest first)</option>
+                            <option value="watched">Last added - Watched</option>
+                            <option value="want_to_watch">Last added - Want to Watch</option>
+                        </select>
+                        <button type="button" id="addButton" class="secondary">+ Add Movie</button>
+                    </div>
+                </div>
+                <p id="statusMessage" role="status"></p>
+                <p id="listError" class="error" role="alert"></p>
+                <p id="emptyMessage" class="empty-message" hidden>No movies yet. Add your first movie using the form above.</p>
+                <div class="table-container" role="region" aria-label="Movie collection" tabindex="0">
+                    <table id="movieTable" hidden>
+                        <caption class="visually-hidden">Saved movies in the selected filter order</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Title</th>
+                                <th scope="col">Director</th>
+                                <th scope="col">Year</th>
+                                <th scope="col">Genre</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Rating</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="moviesContainer"></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
